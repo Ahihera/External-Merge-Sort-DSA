@@ -3,8 +3,8 @@ import heapq
 from utils import read_double, write_double
 
 def create_initial_runs(input_filename, chunk_size):
-    """Giai đoạn 1: Chia file lớn thành các Runs đã sắp xếp trong RAM."""
-    print(f"\n[GIAI ĐOẠN 1] CHIA FILE VÀ SẮP XẾP NỘI TẠI (CHUNK SIZE = {chunk_size})")
+     # Chia file lớn thành các Runs đã sắp xếp trong RAM.
+    print(f"\n CHIA FILE VÀ SẮP XẾP NỘI TẠI (CHUNK SIZE = {chunk_size})")
     runs = []
     run_index = 0
     with open(input_filename, 'rb') as f:
@@ -29,8 +29,8 @@ def create_initial_runs(input_filename, chunk_size):
     return runs
 
 def merge_runs(run_filenames, output_filename):
-    """Giai đoạn 2: Trộn các Runs lại bằng cấu trúc Min-Heap."""
-    print("\n[GIAI ĐOẠN 2] TRỘN CÁC RUNS (K-WAY MERGE BẰNG MIN-HEAP)")
+    # Trộn các Runs lại bằng cấu trúc Min-Heap.
+    print("\n TRỘN CÁC RUNS (K-WAY MERGE BẰNG MIN-HEAP)")
     open_files = []
     min_heap = []
     
@@ -60,4 +60,4 @@ def merge_runs(run_filenames, output_filename):
     print("\nDọn dẹp file tạm...")
     for filename in run_filenames:
         os.remove(filename)
-    print(f"\n[HOÀN TẤT] File kết quả được lưu tại: '{output_filename}'")
+    print(f"\n File kết quả được lưu tại: '{output_filename}'")

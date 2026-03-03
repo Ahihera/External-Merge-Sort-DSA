@@ -4,13 +4,11 @@ sys.stdout.reconfigure(encoding='utf-8')
 import tkinter as tk
 from tkinter import filedialog, scrolledtext, messagebox
 import os
-
-# Import các hàm từ 2 mô-đun đã tách
 import utils
 import external_sort
 
 class TextRedirector(object):
-    """Chuyển hướng lệnh print() vào khung Text của Tkinter"""
+    # Chuyển hướng lệnh print() vào khung Text của Tkinter
     def __init__(self, widget):
         self.widget = widget
 
@@ -37,7 +35,7 @@ class ExternalSortApp:
         sys.stdout = TextRedirector(self.log_area)
 
     def setup_ui(self):
-        # Frame 1: Các nút chức năng chính
+        # Frame 1
         btn_frame = tk.Frame(self.root, pady=5)
         btn_frame.pack(fill=tk.X)
 
@@ -47,7 +45,7 @@ class ExternalSortApp:
         tk.Button(btn_frame, text="4. Xem nội dung File", command=self.view_binary_file, bg="plum", font=("Arial", 9, "bold")).pack(side=tk.LEFT, padx=5)
         tk.Button(btn_frame, text="Xóa Log", command=self.clear_log).pack(side=tk.RIGHT, padx=10)
 
-        # Frame 2: Công cụ cho test tùy ý
+        # Frame 2
         test_frame = tk.Frame(self.root, pady=5)
         test_frame.pack(fill=tk.X)
         
@@ -56,11 +54,9 @@ class ExternalSortApp:
         self.entry_custom.pack(side=tk.LEFT, padx=5)
         tk.Button(test_frame, text="Tạo File Test", command=self.generate_custom_data, bg="khaki").pack(side=tk.LEFT, padx=5)
 
-        # Label hiển thị file đang chọn
         self.lbl_file = tk.Label(self.root, text="Chưa chọn file nào", fg="blue", font=("Arial", 10, "italic"))
         self.lbl_file.pack(pady=5)
 
-        # Khung hiển thị Log
         tk.Label(self.root, text="Khung minh họa quá trình & hiển thị dữ liệu:", font=("Arial", 10, "bold")).pack(anchor=tk.W, padx=10)
         self.log_area = scrolledtext.ScrolledText(self.root, wrap=tk.WORD, font=("Consolas", 10), state='disabled')
         self.log_area.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
@@ -126,17 +122,14 @@ class ExternalSortApp:
             print(f"ĐANG ĐỌC TẬP TIN: {os.path.basename(filepath)}")
             size = os.path.getsize(filepath)
             num_elements = size // 8
-            print(f"Kích thước: {size} bytes ({num_elements} số thực 8-bytes)")
             
             data = utils.read_binary_to_list(filepath)
                     
             if num_elements == 0:
                 print("-> Tập tin rỗng!")
-            elif num_elements <= 150:
-                print(f"-> Nội dung:\n{data}")
             else:
-                print(f"-> Nội dung (chỉ hiển thị 150 số đầu tiên):\n{data[:150]}")
-                print("\n... (Dữ liệu quá dài nên đã ẩn bớt) ...")
+                print(f"-> Nội dung:\n{data}")
+
             print("-"*50 + "\n")
 
     def clear_log(self):
